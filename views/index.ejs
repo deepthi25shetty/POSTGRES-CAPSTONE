@@ -1,0 +1,52 @@
+<%- include('partials/header.ejs'); -%>
+<div class="box">
+    <h1><%=header%></h1>
+
+</div>
+<div class="container">
+    <form action="/add" method="post">
+          <h2 class="add" >Add New Book</h2>
+          <textarea name="newBook" placeholder="Enter the Book title" autocomplete="off" autofocus="true" ></textarea>
+          <textarea name="newNotes" placeholder="Enter the Book notes" autocomplete="off" autofocus="true" ></textarea>
+          <input type="text" name="newRating" placeholder="Enter the Book Rating out of 10" autocomplete="off" autofocus="true"/>
+          <input type="text" name="newDate" placeholder="Enter the date in format YYYY-MM-DD" autocomplete="off" autofocus="true"/ >
+          <button  class="full-width" type="submit" name="list" value="<%=header %>" >Add new Book</button>
+        </form>
+        <ul id="postsList">
+    <% for(let book of booksList){ %>
+        <div class="container2">
+            <li>
+            <h3>Book Title:</h3>
+            <p id="title"><%=book.book_title%></p>
+            <small>Date: <%=book.book_date%>, Rating:<%=book.book_rating%></small>
+            <h3>Read my notes</h3>
+            <p id="notes"><%=book.book_notes%></p>
+        </div>
+        <div class="container3">
+        <form action="/delete" method="post">
+            <button class="delete" type="submit" name="deleteBookId" onchange="this.form.submit()" value="<%=book.id%>">DELETE</button>
+        </form>
+        
+           <form action="/edit" method="post">
+            <button class="edit" type="submit" name="bookid" onchange="this.form.submit()" value="<%=book.id%>">EDIT</button>
+           
+            </form><hr/>
+        
+        
+        </div>
+        </li>
+    <%}%>
+    </ul>
+    </div>
+    
+    
+
+
+
+
+
+
+
+
+
+<%- include('partials/footer.ejs'); -%>

@@ -1,0 +1,26 @@
+<%- include('partials/header.ejs'); -%>
+<div class="box">
+    <h1><%=editTitle%></h1>
+</div>
+<div class="container">
+<%for(let list of lists){%>
+
+
+<form action="/update" method="post">
+     <input type="hidden" name="updatedId" value="<%= list.id %>">
+    <textarea name="updateTitle" placeholder="Enter the title" ><%=list.book_title%></textarea>
+          <textarea name="updateNotes" placeholder="Enter the Book notes" ><%=list.book_notes%></textarea>
+          <input type="text" name="updateRating" placeholder="Enter the Book Rating" value="<%=list.book_rating%>"  />
+          <input type="text" name="updateDate" placeholder="Enter the date in format yyyy-mm-dd" />
+          <button class="full-width" type="submit">
+          <%= submit %>
+        </button>
+</form>
+<%}%>
+
+</div>
+
+
+
+
+<%- include('partials/footer.ejs'); -%>
